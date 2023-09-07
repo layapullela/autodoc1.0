@@ -131,4 +131,5 @@ dist
 
 /node_modules
 
-requirements.txt
+Pipfile
+Pipfile.lock

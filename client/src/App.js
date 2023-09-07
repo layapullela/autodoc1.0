@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 /*import axios from 'axios';*/
 import './index.css';
 import HumanBodyImage from './human_body';
+// https://autodoc1-0-2341f1c6dfd1.herokuapp.com
 
 function App() {
   const [inputValue, setInputValue] = useState('');
@@ -105,12 +106,13 @@ function App() {
           <>
             <div>
               <p style={{fontSize: '14px'}}>
-                Patient demographics:
+                Patient Information:
               </p>
               <ul>
                 {Object.keys(demographicsObj).map((key, index) => (
                   <li key={index}>{key}: {demographicsObj[key]}</li>
                 ))}
+                <li>Symptoms: <strong>{pythonOutput.symptoms}</strong></li>
               </ul>
             </div>
             <h7>Related symptoms: please select if they apply</h7>

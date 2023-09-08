@@ -44,7 +44,7 @@ app.post('/process-text', async (req, res) => {
     const demographics = await executePythonScript(demoScript, `--function extract_information --userText "${userText}"`);
     const symptoms = await executePythonScript(symScript, `--function get_sym --userText "${userText}"`);
     console.log(`This is my initial symptom list: ${symptoms}`)
-    const disease = await executePythonScript(diagScript, `--function top_3_categories --userText "${userText}"`);
+    const disease = await executePythonScript(diagScript, `--function top_3_categories --userText "${symptoms}"`);
     console.log(`This is my initial disease list: ${disease}`)
     const more_symptoms = await executePythonScript(additionalScript, `--function additional_symptoms --symptoms "${symptoms}"`);
     console.log(`These are the added symptoms: ${more_symptoms}`)

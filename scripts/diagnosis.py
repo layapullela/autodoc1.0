@@ -24,7 +24,7 @@ def makeweights(input):
         if len(weightlst) == 0 :
             weightlst.extend([1] * len(word.split()))
         else:
-            weightlst.extend([weightlst[i-1] * 0.95] * len(word.split()))
+            weightlst.extend([weightlst[i-1] * 0.8] * len(word.split()))
     return weightlst
 
 def embed_text(input, weighted=False): 
@@ -64,8 +64,11 @@ def amplify(similarity):
     return ampsim
 
 def top_3_categories(input_text):
+    if input_text == "No Symptoms Detected": 
+        return "No Diagnosis"
+
     df = pd.read_csv("database/mayo_dataset.csv")
-    query_vector = embed_text(input_text)
+    query_vector = embed_text(input_text, weighted=True)
 
     # Compute cosine similarity between the query and each description
     similarities = []
@@ -79,9 +82,9 @@ def top_3_categories(input_text):
             similarities.append(0)
 
     #Add the computed similarities to the DataFrame
-    df['Similarity'] = amplify( similarities ) + df['Commonness Score']/12
+    df['Similarity'] = amplify( similarities ) + df['Commonness Score']/30
     df_sorted = df.sort_values(by='Similarity', ascending=False)
-    top_conditions = df_sorted['Condition'].head(n=5)
+    top_conditions = df_sorted['Condition'].head(n=3)
     
     return ", ".join(top_conditions)
 

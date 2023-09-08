@@ -9,11 +9,11 @@ function HumanBodyImage({isMale, symptoms}) {
     const coordinates = {
         'Head': { top: '5%', left: '50%' },
         'Lungs': { top: '20%', left: '50%' },
-        'Nose': { top: '20%', left: '70%' },
+        'Nose': { top: '15%', left: '50%' },
         'Throat': { top: '40%', left: '50%' },
         'Stomach': { top: '50%', left: '50%' },
         'Skin': { top: '60%', left: '50%' },
-        'Eyes': { top: '10%', left: '50%' },
+        'Eyes': { top: '20%', left: '50%' },
         'Reproductive': { top: '70%', left: '50%' },
         'Extremities': { top: '30%', left: '50%' },
         // ... add more body parts and their relative positions

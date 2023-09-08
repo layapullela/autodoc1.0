@@ -28,6 +28,7 @@ code {
     display: flex;
     justify-content: space-between; /* Distribute space between columns */
     align-items: flex-start; /* Align columns to the top */
+    overflow-x: auto;
   }
 
 .center-header {

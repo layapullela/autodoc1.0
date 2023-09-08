@@ -3,10 +3,31 @@ import gensim
 import argparse
 import numpy as np
 import re 
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Sample dataframe with descriptions and categories
+def get_tfidf(input, data):
+    data['Symptoms'].fillna('', inplace=True)
+    data['Symptoms'] = data['Symptoms'].apply(lambda x: ' '.join(x.lower() for x in x.split()))
+    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_matrix = tfidf_vectorizer.fit_transform(data['Symptoms'])
+    query_tfidf = tfidf_vectorizer.transform([input])
+    cosine_similarities = cosine_similarity(query_tfidf, tfidf_matrix)
+    return cosine_similarities[0]
 
-def embed_text(input): 
+def makeweights(input): 
+    weightlst = []
+    words = input.split(',')
+    for i, word in enumerate(words):
+        if len(weightlst) == 0 :
+            weightlst.extend([1] * len(word.split()))
+        else:
+            weightlst.extend([weightlst[i-1] * 0.95] * len(word.split()))
+    return weightlst
+
+def embed_text(input, weighted=False): 
     embed = gensim.utils.unpickle("embedding")
     sentence_embedding = []
 
@@ -17,7 +38,14 @@ def embed_text(input):
             sentence_embedding.append(word_embedding)
 
     sentence_embedding = np.array(sentence_embedding)
-    sentence_vec = np.mean(sentence_embedding, axis=0)
+    weights = None
+    if weighted:
+        weights = makeweights(input)
+        min_length = min(len(weights), len(sentence_embedding))
+        sentence_embedding = sentence_embedding[:min_length]
+        weights = weights[:min_length]
+
+    sentence_vec = np.average(sentence_embedding, axis=0, weights=weights)
     
     return sentence_vec
 
@@ -28,6 +56,13 @@ def cosine_similarities(vec_a, vec_b):
     norm_b = np.linalg.norm(vec_b)
     return dot_product / (norm_a * norm_b)
 
+def amplify(similarity): 
+    ampsim = similarity
+    while( max(ampsim) > 0.80 ): 
+        ampsim = [a*b for a,b in zip(similarity, ampsim)]
+    
+    return ampsim
+
 def top_3_categories(input_text):
     df = pd.read_csv("database/mayo_dataset.csv")
     query_vector = embed_text(input_text)
@@ -36,7 +71,7 @@ def top_3_categories(input_text):
     similarities = []
     for index, row in df.iterrows():
         if(pd.notna(row['Symptoms'])):
-            description_vector = embed_text(row['Symptoms'])
+            description_vector = embed_text(row['Symptoms'], weighted=True)
 
             similarity = cosine_similarities(query_vector, description_vector)
             similarities.append(similarity)
@@ -44,10 +79,9 @@ def top_3_categories(input_text):
             similarities.append(0)
 
     #Add the computed similarities to the DataFrame
-    similarities = [1/(sim**2) if sim != 0 else 0 for sim in similarities]
-    df['Similarity'] = similarities * np.array(1 + df['Commonness Score']/60)
+    df['Similarity'] = amplify( similarities ) + df['Commonness Score']/12
     df_sorted = df.sort_values(by='Similarity', ascending=False)
-    top_conditions = df_sorted['Condition'].head(n=3)
+    top_conditions = df_sorted['Condition'].head(n=5)
     
     return ", ".join(top_conditions)
 

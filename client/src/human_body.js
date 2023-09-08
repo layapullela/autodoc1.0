@@ -8,14 +8,15 @@ function HumanBodyImage({isMale, symptoms}) {
 
     const coordinates = {
         'Head': { top: '5%', left: '50%' },
-        'Lungs': { top: '20%', left: '50%' },
+        'Eyes': { top: '10%', left: '50%' },
         'Nose': { top: '15%', left: '50%' },
-        'Throat': { top: '40%', left: '50%' },
-        'Stomach': { top: '50%', left: '50%' },
-        'Skin': { top: '60%', left: '50%' },
-        'Eyes': { top: '20%', left: '50%' },
+        'Throat': { top: '20%', left: '50%' },
+        'Lungs': { top: '25%', left: '50%' },
+        'Stomach': { top: '30%', left: '50%' },
+        'Skin': { top: '40%', left: '50%' },
         'Reproductive': { top: '70%', left: '50%' },
-        'Extremities': { top: '30%', left: '50%' },
+        'Extremities': { top: '55%', left: '50%' },
+        'General': { top: '-1%', left: '50%'},
         // ... add more body parts and their relative positions
     };
 
@@ -28,7 +29,7 @@ function HumanBodyImage({isMale, symptoms}) {
       "Head": ['headache', 'Dizziness', 'Fainting', 'Anxiety', 'Panic attacks', 'Hair loss', 'Memory Loss', 'Confusion', 'Depression'],
       "Thoat": ['Sore throat', 'Excessive thirst', 'Difficulty swallowing', 'Slurred Speech'],
       "Stomach": ['Nausea', 'Vomiting', 'Diarrhea', 'Abdominal Pain', 'Changes in bowel habits', 'Constipation', 'Reduced apetite', 'Bloated'],
-      "Skin": ["Jaundice", "Rashes", "Hives", "Patches", "Acne", "Scaly skin"],
+      "Skin": ["Jaundice", "Rash", "Hives", "Patches", "Acne", "Scaly skin"],
       "Eyes": ['Changes in vision', 'dry eyes'],
       "Reproductive": ['Frequent urination', 'Erectile dysfunction', 'Heavy periods', 'Irregular periods', 'Reduced libido', 'Period cramps'],
       "Extremeties": ['Tremors', 'joint pain', 'Cold extremities'],

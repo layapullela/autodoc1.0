@@ -3,17 +3,21 @@ Fatigue
 Shortness of breath
 Persistent cough
 Chest pain
+Dry Eyes
+dry mouth
+acne
 Headache
 Sore throat
 Runny or stuffy nose
 Loss of taste or smell
 Nausea or vomiting
 Diarrhea
+Difficulty Concentrating
 Abdominal pain
 Muscle aches
 Joint pain
-Unexplained weight loss
-Unexplained weight gain
+weight loss
+weight gain
 Excessive thirst
 Frequent urination
 Change in bowel habits
@@ -30,11 +34,13 @@ Reduced appetite
 Swelling or fluid retention
 Changes in vision
 Hearing loss or tinnitus
-Skin rash or hives
+Rash
+Hives
 Itchy skin
 Excessive sweating
 Irregular heartbeat
-High or low blood pressure
+High blood pressure
+Low blood pressure
 Nosebleeds
 Bruising easily
 Heavy or irregular menstrual periods

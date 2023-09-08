@@ -68,7 +68,7 @@ def top_3_categories(input_text):
         return "No Diagnosis"
 
     df = pd.read_csv("database/mayo_dataset.csv")
-    query_vector = embed_text(input_text, weighted=True)
+    query_vector = embed_text(input_text, weighted=False)
 
     # Compute cosine similarity between the query and each description
     similarities = []

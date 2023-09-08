@@ -27,7 +27,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://autodoc1-0-2341f1c6dfd1.herokuapp.com/process-text', {
+      const response = await fetch('http://localhost:8000/process-text', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function App() {
     try {
       console.log(`SENDING TO BACKEND!!!: ${list}`);
       console.log(`SENDING TO BACKEND OG SYM!!!: ${pythonOutput.userText}`);
-      const response = await fetch('https://autodoc1-0-2341f1c6dfd1.herokuapp.com/process-additional-symptoms', {
+      const response = await fetch('http://localhost:8000/process-additional-symptoms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,7 +86,14 @@ function App() {
   <div className="center-square">
     <div className="left-column">
       {pythonOutput.symptoms && (
-        <HumanBodyImage isMale={pythonOutput.demographics} symptoms={pythonOutput.symptoms.split(", ")} />
+        <HumanBodyImage
+          isMale={pythonOutput.demographics}
+          symptoms={
+            Array.isArray(list) && list.length > 0
+              ? pythonOutput.symptoms.split(", ").concat(list.join(", "))
+              : pythonOutput.symptoms.split(", ")
+          }
+        />
       )}
     </div>
     <div className="right-column">
@@ -134,6 +141,16 @@ function App() {
                 <button key={index} onClick={() => handleAddNewSymptoms(name)} disabled={buttonClicked[name]} className={buttonClicked[name] ? 'button-disabled' : 'symptoms-button'}>{name.replace(/[\[\]]/g, "")}</button>
               )) : <p className="text-info">No symptoms to display.</p>;
             })()}
+            <div>
+              <h4 style={{ textDecoration: 'none', borderBottom: 'none', marginBottom: 0 }}>... or a new symptom:</h4>
+              <input type="text" id="newSymptom" className='input-box' placeholder="Enter new symptom" />
+              <button className="submit-button" onClick={() => {
+                const newSymptom = document.getElementById("newSymptom").value;
+                if (newSymptom) {
+                  handleAddNewSymptoms(newSymptom.replace(/[\[\]]/g, ""));
+                }
+              }}>Add</button>
+            </div>
             {Array.isArray(list) && list.length > 0 && (
               <>
                 <h4>Added Symptoms:</h4>

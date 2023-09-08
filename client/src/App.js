@@ -65,7 +65,7 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          original_symptoms: pythonOutput.userText,
+          original_symptoms: pythonOutput.symptoms,
           additional_symptoms: list 
         }),
       });

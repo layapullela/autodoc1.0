@@ -10,7 +10,8 @@ Headache
 Sore throat
 Runny or stuffy nose
 Loss of taste or smell
-Nausea or vomiting
+Nausea
+Vomitting
 Diarrhea
 Difficulty Concentrating
 Abdominal pain
@@ -32,8 +33,8 @@ Difficulty concentrating
 Tingling or numbness in extremities
 Reduced appetite
 Swelling or fluid retention
-Changes in vision
-Hearing loss or tinnitus
+Blurry vision
+Hearing loss
 Rash
 Hives
 Itchy skin
@@ -55,3 +56,52 @@ Blood in urine or stool
 Hair loss
 Difficulty breathing while lying down
 Cough
+Tired
+Nauseous
+Lethargic
+Hungry
+Muscle ache
+Sore
+heavy periods
+menstrual cramps
+Allergies
+Allergy
+Ankle pain
+Back pain
+Bowel incontinence
+Calf pain
+Catarrh
+Chronic pain
+Cold sore
+Dehydration
+Dry mouth
+Earache
+Elbow pain
+Farting
+Globus
+Flu 
+Foot pain 
+genital ulcers
+pelvic pain
+heart palpitations
+hip pain
+indigestion
+bloated
+urinary incontinence
+knee pain
+migraine
+mouth ulcer
+neck pain
+shoulder pain
+sore throat
+stomache ache 
+swollen glands
+testicular lumps
+thigh pain
+tinnitus
+toothache
+urinary tract infection
+vaginal discharge
+vertigo
+warts
+verrucas

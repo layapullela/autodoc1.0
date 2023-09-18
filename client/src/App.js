@@ -27,7 +27,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://autodoc1-0-2341f1c6dfd1.herokuapp.com/process-text', {
+      const response = await fetch('http://localhost:8000/process-text', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function App() {
     try {
       console.log(`SENDING TO BACKEND!!!: ${list}`);
       console.log(`SENDING TO BACKEND OG SYM!!!: ${pythonOutput.userText}`);
-      const response = await fetch('https://autodoc1-0-2341f1c6dfd1.herokuapp.com/process-additional-symptoms', {
+      const response = await fetch('http://localhost:8000/process-additional-symptoms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
